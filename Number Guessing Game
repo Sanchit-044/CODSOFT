@@ -1,1 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
 
+int getRandomNumber() {
+    return rand() % 100 + 1;
+}
+
+string giveHint(int number, int guess) {
+    if (guess > (number + 9)) {
+        return "Too High";
+    } 
+    else if (guess < (number - 9)){
+        return "Too Low";
+    }
+    else if (number == guess) {
+        return "Right";
+    } else {
+        return "You're close";
+    }
+}
+
+void runGuess() {
+    int secretNumber = getRandomNumber();
+    int user_guess;
+    string hint;
+    cout << "Enter a number between 1 and 100: ";
+    int count = 0;
+    int t = 200;
+    while(t--){
+    cin >> user_guess;
+    hint = giveHint(secretNumber, user_guess);
+        
+    if (hint == "Right") {
+        cout << "You guessed it Right!" << std::endl;
+        break;
+    } else {
+        cout << hint << std::endl;
+        count ++;
+    }}
+
+    cout << "You took " << count + 1 << " guesses";
+}
+
+int main() {
+    cout << "a secret number has been generated let's see if you can guess it\n";
+    srand(time(0));
+    runGuess();
+    return 0;
+}
